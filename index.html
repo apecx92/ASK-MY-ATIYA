@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Appreciation for My Love</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background: url('background.jpg') no-repeat center center fixed;
+      background-size: cover;
+      color: white;
+      text-align: center;
+    }
+    #container {
+      display: none;
+      padding: 20px;
+    }
+    button {
+      background-color: #ff4d4d;
+      color: white;
+      border: none;
+      padding: 15px 30px;
+      font-size: 16px;
+      cursor: pointer;
+      border-radius: 5px;
+      margin: 10px;
+    }
+    button:hover {
+      background-color: #ff1a1a;
+    }
+    #password-screen {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      flex-direction: column;
+    }
+  </style>
+</head>
+<body>
+  <div id="password-screen">
+    <h1>Welcome</h1>
+    <p>Enter the secret code to continue:</p>
+    <input type="password" id="password" placeholder="Enter password">
+    <button onclick="checkPassword()">Enter</button>
+  </div>
+
+  <div id="container">
+    <h1>How long have we been together?</h1>
+    <button onclick="showCounter()">Click Here</button>
+    <div id="counter" style="display:none; margin: 20px;"></div>
+    <button onclick="showButtons()" id="continue-button" style="display:none;">Next</button>
+    <div id="buttons" style="display:none;">
+      <h2>Recap a little bit of my love:</h2>
+      <button onclick="location.href='message.html'">Message</button>
+      <button onclick="location.href='gallery.html'">Gallery</button>
+      <button onclick="location.href='love.html'">My Love for Her</button>
+    </div>
+  </div>
+
+  <script>
+    const startDate = new Date('2023-01-01T00:00:00'); // Change this to your relationship start date
+
+    function checkPassword() {
+      const password = document.getElementById('password').value;
+      if (password === '1234') { // Change '1234' to your secret code
+        document.getElementById('password-screen').style.display = 'none';
+        document.getElementById('container').style.display = 'block';
+      } else {
+        alert('Incorrect password. Please try again.');
+      }
+    }
+
+    function showCounter() {
+      const now = new Date();
+      const diff = now - startDate;
+      const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
+      const minutes = Math.floor((diff / (1000 * 60)) % 60);
+      const seconds = Math.floor((diff / 1000) % 60);
+      document.getElementById('counter').innerHTML = `
+        We've been together for:<br>
+        ${days} Days<br>
+        ${hours} Hours<br>
+        ${minutes} Minutes<br>
+        ${seconds} Seconds
+      `;
+      document.getElementById('counter').style.display = 'block';
+      document.getElementById('continue-button').style.display = 'inline-block';
+    }
+
+    function showButtons() {
+      document.getElementById('buttons').style.display = 'block';
+    }
+  </script>
+</body>
+</html>
